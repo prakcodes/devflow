@@ -24,26 +24,6 @@ Standard issue trackers can be bloated and slow. DevFlow provides a lightweight,
 - **State Management**: Centralized reactive state store using the Observer pattern.
 - **Theming**: Button-toggleable Light and Dark modes.
 
-## Application Architecture
-The application follows a modular architecture using ES6 Modules:
-
-- **State Layer (`state.js`)**: Single source of truth. Manages `issues`, `todos`, `theme`, and `currentDate`. Implements a simplified Redux-like subscriber pattern.
-- **Service Layer (`issueService.js`, `todoService.js`, `time.js`)**: Contains business logic and state mutation methods.
-- **UI Layer (`ui.js`)**: Pure DOM manipulation. Subscribes to state changes and re-renders components efficiently.
-- **API Layer (`api.js`)**: Handles external network requests to GitHub and WorldTimeAPI.
-
-## DOM Manipulation Techniques
-- **Dynamic Element Creation**: `document.createElement()` used for performing high-performance list rendering.
-- **Event Delegation**: Listeners attached to container elements (like the todo list) to handle events for dynamic children.
-- **Drag and Drop API**: Native HTML5 DnD used for the Kanban columns.
-- **Class Toggling**: `classList.add/remove` for theme switching and modal visibility.
-
-## Event Handling Strategy
-- **Centralized Setup**: `main.js` initializes all primary event listeners.
-- **Delegation**: Used for list items (issues types, todos) to reduce memory footprint.
-- **Input Debouncing**: Search input updates filter state in real-time.
-- **Keyboard Shortcuts**: `Ctrl/Cmd + I` to quickly open the "New Issue" modal.
-
 ## External APIs Used
 1. **GitHub REST API**: `https://api.github.com/repos/{owner}/{repo}/issues`
    - Used to fetch and import issues.
